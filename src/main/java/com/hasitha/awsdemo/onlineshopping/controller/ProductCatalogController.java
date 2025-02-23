@@ -4,8 +4,8 @@ import com.hasitha.awsdemo.onlineshopping.model.InstanceResponse;
 import com.hasitha.awsdemo.onlineshopping.model.Product;
 import com.hasitha.awsdemo.onlineshopping.service.ProductCatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,13 +18,14 @@ import java.util.List;
 public class ProductCatalogController {
 
   private final ProductCatalogService productCatalogService;
+  private final Environment environment;
 
   @Autowired
-  public ProductCatalogController(ProductCatalogService productCatalogService) {
+  public ProductCatalogController(ProductCatalogService productCatalogService, Environment environment) {
     this.productCatalogService = productCatalogService;
+    this.environment = environment;
   }
 
-  // Endpoint to get all products along with instance details
   @GetMapping
   public InstanceResponse getAllProducts() {
     List<Product> products = productCatalogService.getAllProducts();
@@ -32,19 +33,11 @@ public class ProductCatalogController {
     return new InstanceResponse(products, instanceDetails);
   }
 
-  // Endpoint to get a specific product by ID along with instance details
-  @GetMapping("/{id}")
-  public InstanceResponse getProductById(@PathVariable Long id) {
-    Product product = productCatalogService.getProductById(id);
-    String instanceDetails = getInstanceDetails();
-    return new InstanceResponse(product, instanceDetails);
-  }
-
-  // Helper method to get instance details (host name, IP, etc.)
   private String getInstanceDetails() {
     try {
       InetAddress inetAddress = InetAddress.getLocalHost();
-      return "Instance Host: " + inetAddress.getHostName() + ", IP: " + inetAddress.getHostAddress();
+      String port = environment.getProperty("local.server.port");  // Fetches actual running port
+      return "Instance IP: " + inetAddress.getHostAddress() + ", Port: " + port;
     } catch (UnknownHostException e) {
       return "Instance details unavailable";
     }
