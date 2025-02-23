@@ -3,6 +3,8 @@ package com.hasitha.awsdemo.onlineshopping.controller;
 import com.hasitha.awsdemo.onlineshopping.model.InstanceResponse;
 import com.hasitha.awsdemo.onlineshopping.model.Product;
 import com.hasitha.awsdemo.onlineshopping.service.ProductCatalogService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,8 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductCatalogController {
 
+  private static final Logger logger = LoggerFactory.getLogger(ProductCatalogController.class);
+
   private final ProductCatalogService productCatalogService;
   private final Environment environment;
 
@@ -28,8 +32,12 @@ public class ProductCatalogController {
 
   @GetMapping
   public InstanceResponse getAllProducts() {
+    logger.info("Incoming request for getAllProducts");
+
     List<Product> products = productCatalogService.getAllProducts();
     String instanceDetails = getInstanceDetails();
+
+    logger.info("Returning response with {} products from instance: {}", products.size(), instanceDetails);
     return new InstanceResponse(products, instanceDetails);
   }
 
@@ -39,6 +47,7 @@ public class ProductCatalogController {
       String port = environment.getProperty("local.server.port");  // Fetches actual running port
       return "Instance IP: " + inetAddress.getHostAddress() + ", Port: " + port;
     } catch (UnknownHostException e) {
+      logger.error("Unable to get instance details", e);
       return "Instance details unavailable";
     }
   }
