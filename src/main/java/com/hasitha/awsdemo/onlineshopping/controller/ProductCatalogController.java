@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/products")
 public class ProductCatalogController {
 
   private static final Logger logger = LoggerFactory.getLogger(ProductCatalogController.class);
