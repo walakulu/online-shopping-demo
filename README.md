@@ -31,4 +31,28 @@ Call the REST endpoint using API client (browser or Postman)
 http://localhost:8080/api/products
 ```
 Response:
-![GetAllProductAPIResponse](src/main/resources/static/ProductAPIResponse.JPG)
+```json
+{
+  "productData": [
+    {
+      "id": 1,
+      "name": "Smartphone X",
+      "description": "A high-end smartphone",
+      "price": 799.99
+    },
+    {
+      "id": 2,
+      "name": "Laptop Y",
+      "description": "A powerful gaming laptop",
+      "price": 1299.99
+    },
+    {
+      "id": 3,
+      "name": "Smartwatch Z",
+      "description": "A smartwatch with health tracking",
+      "price": 199.99
+    }
+  ],
+  "instanceDetails": "Instance IP: 192.168.0.10, Port: 8080"
+}
+```
