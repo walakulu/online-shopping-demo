@@ -18,12 +18,11 @@ mvn clean package
 Option 1. Using the JAR File 
 ```bash
 
-java -jar target/online-shopping-0.0.1-SNAPSHOT.jar
+java -jar target/online-shopping-0.0.1.jar --server.port=8081
 ```
 Option 2. Using Maven
 ```bash
-
-mvn spring-boot:run
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8081"
 ```
 ### How to Call API ?
 Call the REST endpoint using API client (browser or Postman)

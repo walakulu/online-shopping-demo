@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.hasitha.awsdemo</groupId>
 	<artifactId>online-shopping</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>online-shopping</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Spring Boot REST API</description>
 	<url/>
 	<licenses>
 		<license/>
