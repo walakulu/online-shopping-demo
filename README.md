@@ -55,7 +55,7 @@ Response:
 ```
 #### 02: Health Check Endpoint
 ```
-http://localhost:8080/api/products
+http://localhost:8080/api/health
 ```
 Response:
 ```json
