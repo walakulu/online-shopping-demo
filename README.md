@@ -14,13 +14,13 @@ This command will compile the source code and package the application into a JAR
 mvn clean package
 ```
 
-### Run the Application
+### 🚀 Run the Application
 Option 1. Using the JAR File 
 ```bash
 
 java -jar target/online-shopping-0.0.1.jar --server.port=8081
 ```
-### How to Call API ?
+### 🔍 How to Call API ?
 This repository provides two simple in-memory APIs. You can interact with the REST endpoints using any API client, such as a browser or Postman.
 
 #### 01: Get All Product Endpoint
