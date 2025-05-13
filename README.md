@@ -20,12 +20,10 @@ Option 1. Using the JAR File
 
 java -jar target/online-shopping-0.0.1.jar --server.port=8081
 ```
-Option 2. Using Maven
-```bash
-mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8081"
-```
 ### How to Call API ?
-Call the REST endpoint using API client (browser or Postman)
+This repository provides two simple in-memory APIs. You can interact with the REST endpoints using any API client, such as a browser or Postman.
+
+#### 01: Get All Product Endpoint
 ```
 http://localhost:8080/api/products
 ```
@@ -53,5 +51,15 @@ Response:
     }
   ],
   "instanceDetails": "Instance IP: 192.168.0.10, Port: 8080"
+}
+```
+#### 02: Health Check Endpoint
+```
+http://localhost:8080/api/products
+```
+Response:
+```json
+{
+  "message": "OK"
 }
 ```
