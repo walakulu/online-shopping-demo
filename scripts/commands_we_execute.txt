@@ -11,7 +11,10 @@ java -version
 sudo aws s3 cp s3://aws-demo-225/online-shopping-0.0.1.jar /opt/myapp/app.jar
 
 # Run the JAR file in the background
-nohup sudo java -jar /opt/myapp/app.jar > /opt/myapp/app.log 2>&1 &
+sudo bash -c 'nohup java -jar /opt/myapp/app.jar > /opt/myapp/app.log 2>&1 &'
+
+# Show running java processes
+ pgrep -a java
 
 ------------------------------------------------------------------------
 # Phase 2: Horizontally Scalable Architecture (user data script)
@@ -30,3 +33,4 @@ sudo aws s3 cp s3://aws-demo-225/online-shopping-0.0.1.jar /opt/myapp/app.jar
 
 # Run the JAR file in the background
 nohup sudo java -jar /opt/myapp/app.jar > /opt/myapp/app.log 2>&1 &
+
